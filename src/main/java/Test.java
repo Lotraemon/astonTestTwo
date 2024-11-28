@@ -29,7 +29,7 @@ public class Test {
         System.out.println("\n" + "Задание 9:");
         System.out.println(isLeapYear(2024));
 
-        System.out.println("\n" + "Задание 10:");
+        System.out.println("\n" + "Задание 10 :");
         int[] array = {1,1,0,1,0,0,0,1,0,1,1};
         for (int i = 0; i < array.length; i++){
             if (array[i] == 1) {
