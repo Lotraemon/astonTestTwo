@@ -1,7 +1,7 @@
 
 public class Park {
 
-    Attractions a1 = new Attractions("Test",8,100);
+    Attractions a1 = new Attractions("Test", 8, 100);
 
     class Attractions {
         String name;
