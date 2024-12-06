@@ -13,6 +13,7 @@ public class Test {
         empArray[4] = new Employee("Gosling Ryan", "Courier", "gosling@gmail.com",
                 8945346, 0, 33);
 
+        Park.Attractions a2 = new Park.Attractions("Test", 8, 100);
         empArray[0].getInfo();
 
     }
