@@ -1,3 +1,5 @@
+package Task_1;
+
 public class Test {
     public static void main(String[] args) {
 
@@ -24,7 +26,7 @@ public class Test {
         dog1.run(300);
         dog1.swim(5);
 
-        bowl1.addFood(30);  // Наполнить миску
+        bowl1.addFood(30);
         for (Cat cat : catsArray) {
             cat.eat(bowl1);
             cat.isFullness();
