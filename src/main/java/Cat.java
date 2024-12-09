@@ -3,7 +3,6 @@ import java.util.Random;
 public class Cat extends Animal {
 
     private boolean fullness;
-    FoodBowl foodBowl = new FoodBowl();
     Random random = new Random();
     private int hunger = random.nextInt(10) + 1;
 
@@ -11,28 +10,6 @@ public class Cat extends Animal {
         super(name);
         Animal.setCatCount(getCatCount() + 1);
         Animal.setAnimalCount(getAnimalCount() + 1);
-    }
-
-    public static class FoodBowl {
-        private static int food;
-
-        public int getFood() {
-            return food;
-        }
-
-        public void setFood(int food) {
-            FoodBowl.food = food;
-        }
-
-        public static void addFeed(int count) {
-            food += count;
-            System.out.println("Миска наполнена на: " + count);
-        }
-
-        public void cleanFoodBowl() {
-            food = 0;
-            System.out.println("Миска очищена");
-        }
     }
 
     public void isFullness() {
@@ -53,13 +30,13 @@ public class Cat extends Animal {
         System.out.println("Кот не умеет плавать");
     }
 
-    public void eat() {
-        if (foodBowl.getFood() - hunger < 0) {
+    public void eat(Bowl bowl) {
+        if (bowl.getFood() - hunger < 0) {
             System.out.print("\nВ миске не хватает еды. " + getName() + " хотел съесть: " + hunger);
         } else {
-            foodBowl.setFood(foodBowl.getFood() - hunger);
+            bowl.setFood(bowl.getFood() - hunger);
             fullness = true;
-            System.out.print("\n" + getName() + " съел еды: " + hunger + ", в миске осталось: " + foodBowl.getFood());
+            System.out.print("\n" + getName() + " съел еды: " + hunger + ", в миске осталось: " + bowl.getFood());
         }
     }
 }

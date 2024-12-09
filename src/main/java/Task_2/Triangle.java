@@ -1,14 +1,14 @@
 package Task_2;
 
-public class Triangle implements Calculation{
+public class Triangle implements Calculation {
 
-    private int side1;
-    private int side2;
-    private int side3;
-    private String borderColor;
-    private String backgroundColor;
+    private final double side1;
+    private final double side2;
+    private final double side3;
+    private final String borderColor;
+    private final String backgroundColor;
 
-    public Triangle(int side1, int side2, int side3, String borderColor, String backgroundColor) {
+    public Triangle(double side1, double side2, double side3, String borderColor, String backgroundColor) {
         this.side1 = side1;
         this.side2 = side2;
         this.side3 = side3;
@@ -16,13 +16,13 @@ public class Triangle implements Calculation{
         this.backgroundColor = backgroundColor;
     }
 
-    @Override
-    public void calculatePerimeter() {
-
+    public double calculateArea() {
+        double pp = calculatePerimeter(side1, side2, side3) / 2;
+        return Math.sqrt(pp * (pp - side1) * (pp - side2) * (pp - side3));
     }
 
-    @Override
-    public void calculateArea() {
-
+    public void showInfo() {
+        System.out.println("\nТреугольник: ");
+        createInfo(borderColor, backgroundColor, side1, side2, side3);
     }
 }

@@ -13,18 +13,20 @@ public class Test {
 
         Dog dog1 = new Dog("Боб");
 
+        Bowl bowl1 = new Bowl(0);
+
         System.out.println("Кол-во котов : " + Animal.getCatCount());
         System.out.println("Кол-во собак : " + Animal.getDogCount());
         System.out.println("Всего животных: " + Animal.getAnimalCount());
+
         catsArray[0].run(100);
         catsArray[1].run(250);
         dog1.run(300);
         dog1.swim(5);
 
-
-        Cat.FoodBowl.addFeed(30);  // Наполнить миску
+        bowl1.addFood(30);  // Наполнить миску
         for (Cat cat : catsArray) {
-            cat.eat();
+            cat.eat(bowl1);
             cat.isFullness();
         }
     }

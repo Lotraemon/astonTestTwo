@@ -1,11 +1,11 @@
 package Task_2;
 
-public class Rectangle implements Calculation{
+public class Rectangle implements Calculation {
 
-    private int length;
-    public int width;
-    private String borderColor;
-    private String backgroundColor;
+    private final double length;
+    private final double width;
+    private final String borderColor;
+    private final String backgroundColor;
 
     public Rectangle(int length, int width, String borderColor, String backgroundColor) {
         this.length = length;
@@ -15,12 +15,12 @@ public class Rectangle implements Calculation{
     }
 
     @Override
-    public void calculatePerimeter() {
-
+    public double calculateArea() {
+        return length * width;
     }
 
-    @Override
-    public void calculateArea() {
-
+    public void showInfo() {
+        System.out.println("\nПрямоугольник: ");
+        createInfo(borderColor, backgroundColor, length, width);
     }
 }

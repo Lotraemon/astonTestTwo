@@ -1,24 +1,28 @@
 package Task_2;
 
-public class Circle implements Calculation{
+public class Circle implements Calculation {
 
-    private int radius;
-    private String borderColor;
-    private String backgroundColor;
+    private final double radius;
+    private final String borderColor;
+    private final String backgroundColor;
 
-    public Circle(int radius, String borderColor, String backgroundColor) {
+    public Circle(double radius, String borderColor, String backgroundColor) {
         this.radius = radius;
         this.borderColor = borderColor;
         this.backgroundColor = backgroundColor;
     }
 
-    @Override
-    public void calculatePerimeter() {
-
+    public double getRadius() {
+        return radius;
     }
 
     @Override
-    public void calculateArea() {
+    public double calculateArea() {
+        return Math.PI * radius * radius;
+    }
 
+    public void showInfo() {
+        System.out.println("\nКруг: ");
+        createInfo(borderColor, backgroundColor, calculatePerimeter(this));
     }
 }
