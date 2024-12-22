@@ -1,3 +1,4 @@
+
 public class Test {
     public static int calculateFactorial(int i) {
         int result = 1;
@@ -8,6 +9,6 @@ public class Test {
     }
 
     public static void main(String[] args) {
-        System.out.println(calculateFactorial(3));
+        System.out.println(calculateFactorial(5));
     }
 }
