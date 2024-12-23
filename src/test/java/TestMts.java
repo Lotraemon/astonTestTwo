@@ -1,7 +1,4 @@
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +6,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class TestMts {
@@ -33,8 +32,19 @@ public class TestMts {
     }
 
     @Test
-    void test(){
+    void testBlockTitle() {
         driver.get("http://mts.by/");
-        WebElement textBlock = driver.findElement(By.xpath("//*[@class="pay__wrapper"]/h2"));
+        WebElement textBlock = driver.findElement(By.xpath("//*[@class='pay__wrapper']/h2"));
+        Assertions.assertEquals("Онлайн пополнение\n" + "без комиссии", textBlock.getText());
+    }
+
+    @Test
+    void testLogos() {
+        String[] altLogos = new String[]{"VISA", "Verifided by VISA",
+                "MasterCard", "MasterCard Secure Code", "Белкарт"};
+        driver.get("http://mts.by/");
+        WebElement logo = driver.findElement(By.xpath("//*[@id='pay-section']//ul/li[1]/img"));
+        String altLogo = logo.getAttribute("alt");
+        Assertions.assertEquals("Visa", altLogo);
     }
 }
