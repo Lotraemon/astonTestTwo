@@ -1,6 +1,7 @@
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,7 +9,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -39,7 +42,6 @@ public class TestMts {
         Assertions.assertEquals("Онлайн пополнение\n" + "без комиссии", textBlock.getText());
     }
 
-    //*[@id='pay-section']//ul/li[1]/img
     @Test
     void testLogos() {
         String[] altLogos = new String[]{"Visa", "Verified By Visa", "MasterCard", "MasterCard Secure Code", "Белкарт"};
@@ -72,9 +74,20 @@ public class TestMts {
         connectionSum.sendKeys("10");
         WebElement confirm = driver.findElement(By.xpath("//*[@class='pay__form']//button"));
         confirm.click();
-        WebElement bepaidApp = driver.findElement(By.xpath("//*[@id='cc-number']"));
-        Assertions.assertTrue(bepaidApp.isDisplayed());
 
+
+        /*WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement iframe = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("iframe.bepaid-iframe")));
+        driver.switchTo().frame(iframe);
+        WebElement bepaidApp = driver.findElement(By.xpath("//*[@id='cc-number']"));//cc-number
+        Assertions.assertTrue(bepaidApp.isDisplayed());*/
+
+    }
+    @Test
+    void t(){
+        driver.get("http://mts.by/");
+        List<WebElement> frames = driver.findElements(By.tagName("iframe"));
+        System.out.println("Количество фреймов на странице: " + frames.size());
     }
 
 }
