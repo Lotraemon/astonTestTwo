@@ -1,17 +1,12 @@
-
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -72,22 +67,14 @@ public class TestMts {
         phoneNumber.sendKeys("297777777");
         WebElement connectionSum = driver.findElement(By.xpath("//*[@class='pay__form']//*[@id='connection-sum']"));
         connectionSum.sendKeys("10");
-        WebElement confirm = driver.findElement(By.xpath("//*[@class='pay__form']//button"));
+        WebElement confirm = driver.findElement(By.xpath("//*[@id='pay-connection']/button"));
         confirm.click();
-
-
-        /*WebDriverWait wait = new WebDriverWait(driver, 10);
-        WebElement iframe = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("iframe.bepaid-iframe")));
+        //WebDriverWait wait = new WebDriverWait(driver, 10);
+        //WebElement iframe = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("iframe.bepaid-iframe")));
+        WebElement iframe = driver.findElement(By.cssSelector("iframe.bepaid-iframe"));
         driver.switchTo().frame(iframe);
         WebElement bepaidApp = driver.findElement(By.xpath("//*[@id='cc-number']"));//cc-number
-        Assertions.assertTrue(bepaidApp.isDisplayed());*/
+        Assertions.assertTrue(bepaidApp.isEnabled());
 
     }
-    @Test
-    void t(){
-        driver.get("http://mts.by/");
-        List<WebElement> frames = driver.findElements(By.tagName("iframe"));
-        System.out.println("Количество фреймов на странице: " + frames.size());
-    }
-
 }
