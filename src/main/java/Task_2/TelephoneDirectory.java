@@ -1,22 +1,23 @@
 package Task_2;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TelephoneDirectory {
-    private List<Contact> directory = new ArrayList<>();
+    private Map<String, List<Long>> directory = new HashMap<>();
 
     public void add(String surname, Long phoneNumber) {
-        directory.add(new Contact(surname, phoneNumber));
+        directory.putIfAbsent(surname, new ArrayList<>());
+        directory.get(surname).add(phoneNumber);
     }
 
     public void get(String surname) {
-        List<Contact> searchResult = new ArrayList<>();
-        for (Contact contact : directory) {
-            if (surname.equals(contact.getSurname())) {
-                searchResult.add(contact);
-            }
+        if (directory.containsKey(surname)) {
+            System.out.println(surname + " : " + directory.get(surname));
+        } else {
+            System.out.println("Нет записей");
         }
-        System.out.println(searchResult);
     }
 }
