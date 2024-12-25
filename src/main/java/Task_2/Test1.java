@@ -5,6 +5,8 @@ public class Test1 {
         TelephoneDirectory td = new TelephoneDirectory();
         td.add("Иванов", 89796568768l);
         td.add("Петров", 8973453456l);
+        td.add("Петрович", 897345345l);
+        td.add("Петровский", 89734756l);
         td.add("Сидоров", 89797657l);
         td.add("Владимиров", 83333356l);
         td.add("Генадьев", 82222222l);
@@ -13,5 +15,6 @@ public class Test1 {
         td.add("Иванов", 81111111l);
 
         td.get("Иванов");
+        td.get("Петров");
     }
 }

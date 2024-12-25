@@ -1,9 +1,6 @@
 package Task_1;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Test {
 
@@ -14,10 +11,9 @@ public class Test {
     }
 
     public static void checkArray(String[] s) {
-        Set<String> uniqueWords = new HashSet<>();
+        Set<String> uniqueWords = new HashSet<>(Arrays.asList(s));
         Map<String, Integer> countWords = new HashMap<>();
         for (String s1 : s) {
-            uniqueWords.add(s1);
             if (countWords.containsKey(s1)) {
                 countWords.put(s1, countWords.get(s1) + 1);
             } else {

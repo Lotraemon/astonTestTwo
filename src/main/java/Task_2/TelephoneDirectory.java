@@ -4,16 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TelephoneDirectory {
-    private List<String> td = new ArrayList<>();
+    private List<Contact> directory = new ArrayList<>();
 
-    public void add(String s, Long i){
-        td.add(s + " : " + Long.toString(i));
+    public void add(String surname, Long phoneNumber) {
+        directory.add(new Contact(surname, phoneNumber));
     }
-    public void get(String s){
-        for (String s1:td){
-            if (s1.contains(s)) {
-                System.out.println(s1);
+
+    public void get(String surname) {
+        List<Contact> searchResult = new ArrayList<>();
+        for (Contact contact : directory) {
+            if (surname.equals(contact.getSurname())) {
+                searchResult.add(contact);
             }
         }
+        System.out.println(searchResult);
     }
 }
