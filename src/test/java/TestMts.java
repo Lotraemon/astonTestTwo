@@ -41,7 +41,7 @@ public class TestMts {
     void testLogos() {
         String[] altLogos = new String[]{"Visa", "Verified By Visa", "MasterCard", "MasterCard Secure Code", "Белкарт"};
         driver.get("http://mts.by/");
-        List<WebElement> logos = driver.findElements(By.xpath("//*[@class='pay__wrapper']//ul/li/img"));
+        List<WebElement> logos = driver.findElements(By.xpath("//*[@class='pay__wrapper']//img"));
         for (int i = 0; i < altLogos.length; i++) {
             String altLogo = logos.get(i).getAttribute("alt");
             Assertions.assertEquals(altLogos[i], altLogo);
@@ -63,7 +63,7 @@ public class TestMts {
         driver.get("http://mts.by/");
         WebElement closeCookie = driver.findElement(By.xpath("//*[@class='btn btn_gray cookie__cancel']"));
         closeCookie.click();
-        WebElement phoneNumber = driver.findElement(By.xpath("//*[@class='pay__form']//*[@id='connection-phone']"));
+        WebElement phoneNumber = driver.findElement(By.xpath("//*[@class='pay-form opened']/div[1]/input"));
         phoneNumber.sendKeys("297777777");
         WebElement connectionSum = driver.findElement(By.xpath("//*[@class='pay__form']//*[@id='connection-sum']"));
         connectionSum.sendKeys("10");
@@ -75,6 +75,40 @@ public class TestMts {
         driver.switchTo().frame(iframe);
         WebElement bepaidApp = driver.findElement(By.xpath("//*[@id='cc-number']"));//cc-number
         Assertions.assertTrue(bepaidApp.isEnabled());
-
     }
+    @Test
+    void ff(){
+        driver.get("http://mts.by/");
+        WebElement closeCookie = driver.findElement(By.xpath("//*[@class='btn btn_gray cookie__cancel']"));
+        closeCookie.click();
+        WebElement sss = driver.findElement(By.xpath("//*[@class='select__header']"));
+        sss.click();
+        WebElement ее = driver.findElement(By.xpath("//*[@id='pay-section']/div/div/div[2]/section/div/div[1]/div[1]/div[2]/ul/li[2]/p"));
+        //*[@id="pay-section"]/div/div/div[2]/section/div/div[1]/div[1]/div[2]/ul/li[2]/p
+        sss.click();
+        WebElement ff = driver.findElement(By.xpath("//*[@class='pay-form opened']/div[1]/input"));
+        System.out.println(ff.getText());
+       Assertions.assertEquals("df",ff.getText());
+
+
+        //pay-instalment
+    }
+
+    @Test
+    void Tesm() {
+        driver.get("http://mts.by/");
+        WebElement closeCookie = driver.findElement(By.xpath("//*[@class='btn btn_gray cookie__cancel']"));
+        closeCookie.click();
+        WebElement ff = driver.findElement(By.xpath("//*[@class='pay-form opened']/div[1]/input"));
+        System.out.println(ff.getAttribute("placeholder"));
+
+}
+@Test
+void gf(){
+    driver.get("http://mts.by/");
+    WebElement closeCookie = driver.findElement(By.xpath("//*[@class='btn btn_gray cookie__cancel']"));
+    closeCookie.click();
+    PayForm f = new PayForm(driver);
+    f.checkNumberPlaceholder("Номер телефона");
+}
 }
