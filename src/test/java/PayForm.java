@@ -14,7 +14,6 @@ public class PayForm {
     By homeInternetSelector = By.xpath("//*[@class='select__list']/li[2]");
     By creditSelector = By.xpath("//*[@class='select__list']/li[3]");
     By debtSelector = By.xpath("//*[@class='select__list']/li[4]");
-    By iFrme = By.cssSelector("iframe.bepaid-iframe");
 
 
     private final WebDriver driver;
@@ -74,6 +73,7 @@ public class PayForm {
         driver.findElement(creditSelector).click();
         return this;
     }
+
     public PayForm chooseDept() {
         driver.findElement(selector).click();
         driver.findElement(debtSelector).click();
