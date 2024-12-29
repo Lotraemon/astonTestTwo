@@ -1,3 +1,4 @@
+import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -5,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -99,17 +101,25 @@ public class TestMts {
     }
 
     @Test
+    @Description("test BePaid form")
     void testBePaid() {
 
-        BePaidFrame bePaidFrame = new BePaidFrame(driver);
+        BePaid bePaid = new BePaid(driver);
         testForm();
 
-        Assertions.assertEquals("10.00 BYN", bePaidFrame.getPriceValue());
-        Assertions.assertEquals("Оплата: Услуги связи\n" + "Номер:375297777777", bePaidFrame.getPhoneNumber());
-        Assertions.assertEquals("Номер карты", bePaidFrame.getNumberPlaceholder());
-        Assertions.assertEquals("Срок действия", bePaidFrame.getPeriodPlaceholder());
-        Assertions.assertEquals("CVC", bePaidFrame.getCvcPlaceholder());
-        Assertions.assertEquals("Имя держателя (как на карте)", bePaidFrame.getUsernamePlaceholder());
-        Assertions.assertEquals(" Оплатить  10.00 BYN ", bePaidFrame.getButtonText());
+        Assertions.assertEquals("10.00 BYN", bePaid.getText(bePaid.priceValue));
+        Assertions.assertEquals("Оплата: Услуги связи Номер:375297777777", bePaid.getText(bePaid.phoneNumber));
+        Assertions.assertEquals("Номер карты", bePaid.getText(bePaid.numberPlaceholder));
+        Assertions.assertEquals("Срок действия", bePaid.getText(bePaid.periodPlaceholder));
+        Assertions.assertEquals("CVC", bePaid.getText(bePaid.cvcPlaceholder));
+        Assertions.assertEquals("Имя держателя (как на карте)", bePaid.getText(bePaid.usernamePlaceholder));
+        Assertions.assertEquals("Оплатить 10.00 BYN", bePaid.getText(bePaid.button));
+
+        Assertions.assertTrue(bePaid.isIconVisible(bePaid.visaIcon));
+        Assertions.assertTrue(bePaid.isIconVisible(bePaid.mastercardIcon));
+        Assertions.assertTrue(bePaid.isIconVisible(bePaid.belkartIcon));
+        Assertions.assertTrue(bePaid.isIconVisible(bePaid.mirIcon1));
+        Assertions.assertTrue(bePaid.isIconVisible(bePaid.mirIcon2));
+
     }
 }

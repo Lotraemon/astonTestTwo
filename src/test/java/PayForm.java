@@ -79,4 +79,5 @@ public class PayForm {
         driver.findElement(debtSelector).click();
         return this;
     }
+
 }
