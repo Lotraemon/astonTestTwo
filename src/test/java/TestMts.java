@@ -41,6 +41,7 @@ public class TestMts {
 
     @Test
     void testBlockTitle() {
+
         Assertions.assertEquals("Онлайн пополнение\n" + "без комиссии", payForm.getTitleText());
     }
 
@@ -56,48 +57,48 @@ public class TestMts {
 
     @Test
     void testLink() {
-        payForm.clickAboutService();
+        payForm.click(payForm.aboutServiceLink);
         Assertions.assertTrue(driver.getCurrentUrl().contains("poryadok-oplaty"));
     }
 
     @Test
     void testForm() {
-        payForm.typeNumber("297777777");
-        payForm.typeValue("10");
-        payForm.clickContinue();
+        payForm.typeText(payForm.numberField, "297777777");
+        payForm.typeText(payForm.payValueField, "10");
+        payForm.click(payForm.continueButton);
         WebElement iframe = driver.findElement(By.cssSelector("iframe.bepaid-iframe"));
         driver.switchTo().frame(iframe);
     }
 
     @Test
     void testMobilePlaceholder() {
-        payForm.checkNumberPlaceholder("Номер телефона");
-        payForm.checkValuePlaceholder("Сумма");
-        payForm.checkEmailPlaceholder("E-mail для отправки чека");
+        payForm.checkPlaceholder(payForm.numberField, "Номер телефона");
+        payForm.checkPlaceholder(payForm.payValueField, "Сумма");
+        payForm.checkPlaceholder(payForm.emailField, "E-mail для отправки чека");
     }
 
     @Test
     void testHomeInternetPlaceholder() {
-        payForm.chooseHomeInternet();
-        payForm.checkNumberPlaceholder("Номер абонента");
-        payForm.checkValuePlaceholder("Сумма");
-        payForm.checkEmailPlaceholder("E-mail для отправки чека");
+        payForm.chooseSelector(payForm.homeInternetSelector);
+        payForm.checkPlaceholder(payForm.numberField, "Номер абонента");
+        payForm.checkPlaceholder(payForm.payValueField, "Сумма");
+        payForm.checkPlaceholder(payForm.emailField, "E-mail для отправки чека");
     }
 
     @Test
     void testCreditPlaceholder() {
-        payForm.chooseCredit();
-        payForm.checkNumberPlaceholder("Номер счета на 44");
-        payForm.checkValuePlaceholder("Сумма");
-        payForm.checkEmailPlaceholder("E-mail для отправки чека");
+        payForm.chooseSelector(payForm.creditSelector);
+        payForm.checkPlaceholder(payForm.numberField, "Номер счета на 44");
+        payForm.checkPlaceholder(payForm.payValueField, "Сумма");
+        payForm.checkPlaceholder(payForm.emailField, "E-mail для отправки чека");
     }
 
     @Test
     void testDeptPlaceholder() {
-        payForm.chooseDept();
-        payForm.checkNumberPlaceholder("Номер счета на 2073");
-        payForm.checkValuePlaceholder("Сумма");
-        payForm.checkEmailPlaceholder("E-mail для отправки чека");
+        payForm.chooseSelector(payForm.debtSelector);
+        payForm.checkPlaceholder(payForm.numberField, "Номер счета на 2073");
+        payForm.checkPlaceholder(payForm.payValueField, "Сумма");
+        payForm.checkPlaceholder(payForm.emailField, "E-mail для отправки чека");
     }
 
     @Test
