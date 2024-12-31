@@ -14,7 +14,7 @@ public class TestEcho {
     }};
 
     @Test
-    public void getecho() {
+    public void getTest() {
         given()
                 .baseUri("https://postman-echo.com")
                 .when()
