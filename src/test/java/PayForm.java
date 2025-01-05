@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class PayForm {
     By numberField = By.xpath("//*[@class='pay-form opened']/div[1]/input");
@@ -46,5 +47,12 @@ public class PayForm {
         driver.findElement(selector).click();
         driver.findElement(by).click();
         return this;
+    }
+    public void goToBePaid() {
+        typeText(numberField, "297777777");
+        typeText(payValueField, "10");
+        click(continueButton);
+        WebElement iframe = driver.findElement(By.cssSelector("iframe.bepaid-iframe"));
+        driver.switchTo().frame(iframe);
     }
 }
