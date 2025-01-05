@@ -5,9 +5,9 @@ import org.openqa.selenium.WebElement;
 
 public class PayForm {
 
-    By numberField = By.xpath("//*[@class='pay__form']//*[@id='connection-phone']");
-    By payValueField = By.xpath("//*[@class='pay__form']//*[@id='connection-sum']");
-    By emailField = By.xpath("//*[@class='pay__form']//*[@id='connection-email']");
+    By numberField = By.xpath("//*[@class='pay-form opened']/div[1]/input");
+    By payValueField = By.xpath("//*[@class='pay-form opened']/div[2]/input");
+    By emailField = By.xpath("//*[@class='pay-form opened']/div[3]/input");
     By aboutServiceLink = By.linkText("Подробнее о сервисе");
     By logos = By.xpath("//*[@class='pay__wrapper']//img");
     By title = By.xpath("//*[@class='pay__wrapper']/h2");
