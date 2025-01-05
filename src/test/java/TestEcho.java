@@ -14,7 +14,7 @@ public class TestEcho {
     }};
 
     @Test
-    public void getTest() {
+    public void whenGet_thenStatus200() {
         given()
                 .baseUri("https://postman-echo.com")
                 .when()
@@ -27,7 +27,7 @@ public class TestEcho {
     }
 
     @Test
-    public void postTest() {
+    public void whenPostText_thenStatus200() {
         given()
                 .contentType("text/plain").body(s)
                 .baseUri("https://postman-echo.com")
@@ -40,7 +40,7 @@ public class TestEcho {
     }
 
     @Test
-    public void post2Test() {
+    public void whenPostJson_thenStatus200() {
         given()
                 .contentType("application/json").body(json)
                 .baseUri("https://postman-echo.com")
@@ -53,7 +53,7 @@ public class TestEcho {
     } //500 c application/x-www-form-urlencoded в form
 
     @Test
-    public void putTest() {
+    public void whenPutText_thenStatus200() {
         given()
                 .contentType("text/plain").body(s)
                 .baseUri("https://postman-echo.com")
@@ -66,7 +66,7 @@ public class TestEcho {
     }
 
     @Test
-    public void patchTest() {
+    public void whenPatchText_ThenStatus200() {
         given()
                 .contentType("text/plain").body(s)
                 .baseUri("https://postman-echo.com")
@@ -79,7 +79,7 @@ public class TestEcho {
     }
 
     @Test
-    public void deleteTest() {
+    public void whenDeleteText_thenStatus200() {
         given()
                 .contentType("text/plain").body(s)
                 .baseUri("https://postman-echo.com")
