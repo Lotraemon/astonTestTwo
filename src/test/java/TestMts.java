@@ -50,7 +50,7 @@ public class TestMts {
     @Test
     public void testLogos() {
         String[] altLogos = new String[]{"Visa", "Verified By Visa", "MasterCard", "MasterCard Secure Code", "Белкарт"};
-        List<WebElement> logos = driver.findElements(payForm.logos);
+        List<WebElement> logos = driver.findElements(payForm.getLogos());
         for (int i = 0; i < altLogos.length; i++) {
             String altLogo = logos.get(i).getAttribute("alt");
             assertEquals(altLogos[i], altLogo);
@@ -60,48 +60,48 @@ public class TestMts {
 
     @Test
     public void testLink() {
-        payForm.click(payForm.aboutServiceLink);
+        payForm.click(payForm.getAboutServiceLink());
         assertTrue(driver.getCurrentUrl().contains("poryadok-oplaty"));
     }
 
     @Test
     public void testForm() {
-        payForm.typeText(payForm.numberField, "297777777");
-        payForm.typeText(payForm.payValueField, "10");
-        payForm.click(payForm.continueButton);
+        payForm.typeText(payForm.getFieldOne(), "297777777");
+        payForm.typeText(payForm.getFieldTwo(), "10");
+        payForm.click(payForm.getContinueButton());
         WebElement iframe = driver.findElement(By.cssSelector("iframe.bepaid-iframe"));
         driver.switchTo().frame(iframe);
     }
 
     @Test
     public void testMobilePlaceholder() {
-        payForm.checkPlaceholder(payForm.numberField, "Номер телефона");
-        payForm.checkPlaceholder(payForm.payValueField, "Сумма");
-        payForm.checkPlaceholder(payForm.emailField, "E-mail для отправки чека");
+        payForm.checkPlaceholder(payForm.getFieldOne(), "Номер телефона");
+        payForm.checkPlaceholder(payForm.getFieldTwo(), "Сумма");
+        payForm.checkPlaceholder(payForm.getFieldThree(), "E-mail для отправки чека");
     }
 
     @Test
     public void testHomeInternetPlaceholder() {
-        payForm.chooseSelector(payForm.homeInternetSelector);
-        payForm.checkPlaceholder(payForm.numberField, "Номер абонента");
-        payForm.checkPlaceholder(payForm.payValueField, "Сумма");
-        payForm.checkPlaceholder(payForm.emailField, "E-mail для отправки чека");
+        payForm.chooseSelector(payForm.getHomeInternetSelector());
+        payForm.checkPlaceholder(payForm.getFieldOne(), "Номер абонента");
+        payForm.checkPlaceholder(payForm.getFieldTwo(), "Сумма");
+        payForm.checkPlaceholder(payForm.getFieldThree(), "E-mail для отправки чека");
     }
 
     @Test
     public void testCreditPlaceholder() {
-        payForm.chooseSelector(payForm.creditSelector);
-        payForm.checkPlaceholder(payForm.numberField, "Номер счета на 44");
-        payForm.checkPlaceholder(payForm.payValueField, "Сумма");
-        payForm.checkPlaceholder(payForm.emailField, "E-mail для отправки чека");
+        payForm.chooseSelector(payForm.getCreditSelector());
+        payForm.checkPlaceholder(payForm.getFieldOne(), "Номер счета на 44");
+        payForm.checkPlaceholder(payForm.getFieldTwo(), "Сумма");
+        payForm.checkPlaceholder(payForm.getFieldThree(), "E-mail для отправки чека");
     }
 
     @Test
     public void testDeptPlaceholder() {
-        payForm.chooseSelector(payForm.debtSelector);
-        payForm.checkPlaceholder(payForm.numberField, "Номер счета на 2073");
-        payForm.checkPlaceholder(payForm.payValueField, "Сумма");
-        payForm.checkPlaceholder(payForm.emailField, "E-mail для отправки чека");
+        payForm.chooseSelector(payForm.getDebtSelector());
+        payForm.checkPlaceholder(payForm.getFieldOne(), "Номер счета на 2073");
+        payForm.checkPlaceholder(payForm.getFieldTwo(), "Сумма");
+        payForm.checkPlaceholder(payForm.getFieldThree(), "E-mail для отправки чека");
     }
 
     @Test
@@ -111,19 +111,19 @@ public class TestMts {
         BePaid bePaid = new BePaid(driver);
         payForm.goToBePaid();
         assertAll("test BePaid form",
-                () -> assertEquals("10.00 BYN", bePaid.getText(bePaid.priceValue)),
-                () -> assertEquals("Оплата: Услуги связи Номер:375297777777", bePaid.getText(bePaid.phoneNumber)),
-                () -> assertEquals("Номер карты", bePaid.getText(bePaid.numberPlaceholder)),
-                () -> assertEquals("Срок действия", bePaid.getText(bePaid.periodPlaceholder)),
-                () -> assertEquals("CVC", bePaid.getText(bePaid.cvcPlaceholder)),
-                () -> assertEquals("Имя держателя (как на карте)", bePaid.getText(bePaid.usernamePlaceholder)),
-                () -> assertEquals("Оплатить 10.00 BYN", bePaid.getText(bePaid.button)),
+                () -> assertEquals("10.00 BYN", bePaid.getText(bePaid.getPriceValue())),
+                () -> assertEquals("Оплата: Услуги связи Номер:375297777777", bePaid.getText(bePaid.getPhoneNumber())),
+                () -> assertEquals("Номер карты", bePaid.getText(bePaid.getNumberPlaceholder())),
+                () -> assertEquals("Срок действия", bePaid.getText(bePaid.getPeriodPlaceholder())),
+                () -> assertEquals("CVC", bePaid.getText(bePaid.getCvcPlaceholder())),
+                () -> assertEquals("Имя держателя (как на карте)", bePaid.getText(bePaid.getUsernamePlaceholder())),
+                () -> assertEquals("Оплатить 10.00 BYN", bePaid.getText(bePaid.getButton())),
 
-                () -> assertTrue(bePaid.isIconVisible(bePaid.visaIcon)),
-                () -> assertTrue(bePaid.isIconVisible(bePaid.mastercardIcon)),
-                () -> assertTrue(bePaid.isIconVisible(bePaid.belkartIcon)),
-                () -> assertTrue(bePaid.isIconVisible(bePaid.mirIcon1)),
-                () -> assertTrue(bePaid.isIconVisible(bePaid.mirIcon2))
+                () -> assertTrue(bePaid.isIconVisible(bePaid.getVisaIcon())),
+                () -> assertTrue(bePaid.isIconVisible(bePaid.getMastercardIcon())),
+                () -> assertTrue(bePaid.isIconVisible(bePaid.getBelkartIcon())),
+                () -> assertTrue(bePaid.isIconVisible(bePaid.getMirIcon1())),
+                () -> assertTrue(bePaid.isIconVisible(bePaid.getMirIcon2()))
         );
     }
 }
