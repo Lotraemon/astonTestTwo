@@ -1,3 +1,7 @@
+import io.qameta.allure.Feature;
+import io.qameta.allure.Issue;
+import io.qameta.allure.Link;
+import io.qameta.allure.Owner;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
@@ -12,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Feature("Тесты формы оплаты")
 public class TestMts {
 
     private WebDriver driver;
@@ -104,8 +109,12 @@ public class TestMts {
         payForm.checkPlaceholder(payForm.getFieldThree(), "E-mail для отправки чека");
     }
 
-    @Test
+    @Issue(value = "Lesson_18")
+    @Link(name = "Форма оплаты", url = "https://www.mts.by/")
+    @Owner(value = "Tester 1")
+    @DisplayName("Тест формы 'be paid'")
     @Description("test BePaid form")
+    @Test
     public void testBePaid() {
 
         BePaid bePaid = new BePaid(driver);
