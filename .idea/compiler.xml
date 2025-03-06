@@ -9,8 +9,5 @@
         <module name="astonTestTwo" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="astonTestTwo" target="11" />
-    </bytecodeTargetLevel>
   </component>
 </project>
